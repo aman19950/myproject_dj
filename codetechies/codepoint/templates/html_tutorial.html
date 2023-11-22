@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% include "index.html" %}
+{% load test %}
+{% load static %}
+{% block title %}{{f.course_name}}{% endblock title %}
+
+{% block content %}
+<div class="navbar-heading py-3 d-flex justify-content-evenly sticky-top">
+    {% for co_object in content %}
+        
+            <a href="/course/{{co_object.slug}}" class="nav-link fs-6 px-3 link-light a_link">{{co_object.course_name}}</a>
+    
+    {% endfor %}
+</div>
+
+<section class="d-flex justify-content-center bg-secondary" >
+  <h2 class="text-uppercase my-3 fs-1 " >{{fetch_dtls.course_name}} Tutorial</h2>
+</section>
+
+<section>
+  <nav>
+    <ul>
+      <li>
+        <img src="{% static 'images/html5.jpg' %}" alt="" width=100% height=193 class="rounded rounded-5">
+      </li>
+    </ul>
+    <ul class="list-group">
+      {% for i in fetch_dtls.course_information_set.all %}
+        {% comment %} <li><a href = "../../course1/{{i.title}}" %} class="list-group-item list-group-item-action fs-5" >{{i.title}}</a></li> {% endcomment %}
+        <li><a href="?serial_no={{i.id}}" class="list-group-item list-group-item-action fs-5" >{{i.title}}</a></li>
+      {% endfor %}
+      
+     
+    </ul>
+  </nav>
+  
+  <article>
+   
+   <div class="example">
+     {% autoescape off %}
+     {{f.course_content}}
+     {% endautoescape %}
+   </div> 
+  <div id="myDiv" class="ms-3 mt-4" style="display:none;">
+      
+      <h1 id="myh1">This is a heading</h1>
+      <p >Hello World!</p>
+  </div>
+   </article>
+</section>
+
+<script>
+const nodeList = document.querySelectorAll(".example p");
+for (var i = 0; i < nodeList.length; i++) {
+  nodeList[i].setAttribute('id','tab'+i);
+  nodeList[i].setAttribute('class',"ass add");
+  
+}
+c =  document.getElementById('tab6')
+c.text = "<html><head></head><body>hsdg</body>"
+
+function loadDoc() {
+  {% comment %} alert("hello") {% endcomment %}
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML =
+    this.responseText;
+  }
+  alert("{{f.title}}")
+  xhttp.open("GET", "../../course1/{{f.title}}");
+  xhttp.send();
+}
+{% comment %}  {% endcomment %}
+{% comment %} function myFunction() {
+  
+  var x = document.getElementById("myDiv");
+  console.log(x);
+  if (x.style.display === "none") {
+  
+    x.style.display = "block";
+
+  } else {
+    x.style.display = "none";
+  }
+}    {% endcomment %}
+
+
+
+
+
+</script>
+{% endblock content %}

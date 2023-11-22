@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<div class="navbar-heading py-3 d-flex justify-content-evenly sticky-top">
+    {% for co_object in course_category_obj %}
+        
+            <a href="/course/{{co_object.slug}}" class="nav-link fs-6 px-3 link-light a_link">{{co_object.course_name}}</a>
+    
+    {% endfor %}
+</div>
+<section id="hero" class="d-flex align-items-center sec">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+          <h1>Better Solutions For Your Business</h1>
+          <h2>We are team of talented designers making websites with Bootstrap</h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{% static '/images/hero-img.png' %}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+<section id="clients" class="clients section-bg">
+      <div class="container ">
+
+        <div class="row aos-init aos-animate" data-aos="zoom-in">
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <h2>Django</h2>
+          </div>
+
+        </div>
+      </div>
+    </section>
+{% endblock content %}
